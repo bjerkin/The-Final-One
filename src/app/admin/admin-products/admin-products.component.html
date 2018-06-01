@@ -8,6 +8,7 @@
     <th>Price</th>
     <th>Edit </th>
     <th>Remove</th>
+    <th>On sale</th>
 
   </tr>
   </thead>
@@ -21,6 +22,12 @@
     </td>
     <td>
     <a class="btn" (click)="productService.remove(product.key)">Remove</a>
+    </td>
+    <td *ngIf="product.onSale==true">
+      <span class="checkmark">
+        <div class="checkmark_stem"></div>
+        <div class="checkmark_kick"></div>
+      </span>
     </td>
   </tr>
   </tbody>
