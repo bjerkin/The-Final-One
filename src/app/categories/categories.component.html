@@ -1,0 +1,10 @@
+<div *ngIf="categories?.length > 0;else noCategories">
+  <ul *ngFor="let category of categories" class="collection">
+    <li class="collection-category"><strong>  {{category.title}}  </strong></li>
+  </ul>
+</div>
+
+<ng-template #nocategories>
+  <hr>
+  <h5>There are no categories to list</h5>
+</ng-template>  

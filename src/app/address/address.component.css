@@ -1,0 +1,12 @@
+.bg-dark{
+  border: 1px solid black;
+  left: 15px;
+  top: 5px;
+}
+.btn-outline-info{
+  margin: 11px 1px 21px 1px;
+}
+
+.btn-secondary{
+  margin: 0px 5px 0px 5px;
+}

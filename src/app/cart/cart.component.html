@@ -1,0 +1,103 @@
+<div *ngIf="!checked">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Product</th>
+      <th scope="col">Price</th>
+      <th style="width:200px;" scope="col">Amount</th>
+      <th scope="col">Total</th>
+      <th style="width:100px;" scope="col">Actions</th>
+    </tr>
+    </thead>
+
+    <tr *ngFor="let item of items$ | async;trackBy:trackByFn">
+      <td>{{ (item.product | doc | async)?.title }}</td>
+      <td>{{ (item.product | doc | async)?.price | currency:'EUR':'symbol' }}</td>
+
+
+      <td>
+        <div class="input-group">
+          <button (click)="updateItem(item.product, (1*item.amount)-1)" [disabled]="item.amount==0" class="btn btn-secondary input-addon	d-none d-sm-block">
+            <i class="fa fa-minus" aria-hidden="true"></i>
+          </button>
+          <input #amount [min]=3 [max]= 7 (change)="updateItem(item.product, amount.value)" [value]="item.amount" type="number" class="form-control amount-input">
+          <button (click)="updateItem(item.product, (1*item.amount)+1)" class="btn btn-secondary input-addon d-none d-sm-block">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          </button>
+        </div>
+      </td>
+      <td>{{ (item.product | doc | async)?.price * amount.value | currency:'EUR':'symbol' }}</td>
+      <td>
+        <button class="btn btn-light" (click)="delete(item.product)"><i class="fa fa-trash"></i></button>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <th colspan="2"></th>
+      <th>Total: </th>
+      <th>{{ cartTotal$ | async | currency:'EUR':'symbol' }}</th>
+      <th></th>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+
+<div *ngIf="!checked">
+  <button class="btn" type="submit" (click)="hey()">Proceed</button>
+</div>
+<div *ngIf="lim > 0">
+  <tr *ngFor="let item of items$ | async;trackBy:trackByFn">
+    <div *ngIf="checked == true">
+      <div *ngIf="nu < lim">
+        {{updateItem(item.product,item.amount)}}
+      </div>
+    </div>
+  </tr>
+</div>
+
+<div *ngIf="!hasaddress">
+  <tr *ngFor="let aaddress of Address$ | async;" >
+    {{addressistrue()}}
+  </tr>
+</div>
+<div *ngIf="checked">
+  <div *ngIf="hasaddress">
+    <div class="pull-left">
+      <div class="card" style="width: 30rem;">
+        <div class="card-body">
+          <h6 class="card-title">Select Shipping Address</h6>
+          <p class="card-text"></p>
+          <div class="form-group">
+            <select [(ngModel)]="adresschosen" #aaddress="ngModel" name="aaddress"
+                    [class.is-invalid]="aaddress.touched && aaddress.invalid" id="aadress"
+                    class="form-control" required>
+              <option *ngFor="let aaddress of Address$ | async;" [value]="aaddress.address" >
+                {{ aaddress.address }}
+              </option>
+            </select>
+            <div class="invalid-feedback" *ngIf="aaddress.touched && aaddress.invalid">
+              Category is required.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="hasaddress">
+  <div *ngIf="checked">
+    <button class="btn btn-warning" type="submit" (click)="navigatetocheckout()">Go to checkout</button>
+  </div>
+</div>
+
+<div *ngIf="!hasaddress">
+  <div *ngIf="checked">
+    <button class="btn btn-warning" type="submit" (click)="navigatetoaddress()">ADD AN ADDRESS</button>
+  </div>
+</div>
+
+<div class="text-center">
+</div>

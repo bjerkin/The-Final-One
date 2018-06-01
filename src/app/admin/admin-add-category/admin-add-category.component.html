@@ -1,0 +1,19 @@
+
+<ul *ngFor="let category of categories" class="collection">
+  <li class="collection-category"><strong>  {{category.title}}  </strong></li>
+</ul>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title"><strong>  Add Category</strong></span>
+    <form (ngSubmit)="onSubmit()" class="col s6">
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" placeholder="Add Category" [(ngModel)]="Category.title"
+          name="title">
+        </div>
+        <input type="submit" value="Submit" class="btn">
+      </div>
+    </form>
+  </div>
+</div>

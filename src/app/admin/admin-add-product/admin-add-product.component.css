@@ -1,0 +1,15 @@
+.invalid-feedback{
+  display: block;
+}
+
+img {
+  height: 250px;
+  width: 50%;
+}
+#size{
+  max-height: 100px;
+  max-width: 120px;
+}
+.btn{
+  background-color: lightgreen;
+}

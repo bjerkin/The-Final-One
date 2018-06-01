@@ -1,0 +1,32 @@
+
+<div class="card" id="id4">
+  <a [routerLink] = "['/single-page/',product.key]">
+  <img class="card-img-top" [src]="product.imageUrl" [alt]="product.title" width="100" height="200">
+  </a>
+  <div class="card-body">
+    <h6 class="card-title">{{ product.title }}</h6>
+    <p class="card-text">{{ product.price | currency:'EUR':'symbol' }}</p>
+    <div *ngIf="truncating && len > limit">
+      {{product.desc | truncateText : limit}}
+
+      <p><a [routerLink] = "['/single-page/',product.key]">Show more</a></p>
+    </div>
+    <div *ngIf="product.key">
+      <button class="btn btn-block col-md-10"  *ngIf="ordered==0" (click)="increase()" id="d">Add to Cart</button>
+      <div class="input-group" *ngIf="ordered!=0" id="id9">
+        <button (click)="decrease()" class="input-group-addon btn" id="id5">
+          <i class="fa fa-minus" aria-hidden="true"></i>
+        </button>
+        <input (change)="amountChanged()" type="number" class="form-control text-center" [(ngModel)]="ordered" />
+        <button (click)="increase()" class="input-group-addon btn" id="id6">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="product.onSale==true" [(ngModel)]="product.oldPrice" >
+      <p style="color: blueviolet;">On sale!</p>
+      <p id="pr"><s>{{product.oldPrice | currency:'SEK':'symbol'}}</s> {{product.price | currency:'SEK':'symbol'}}! ({{percent | number:'2.0-0'}}% off!)</p>
+    </div>
+  </div>
+</div>
+

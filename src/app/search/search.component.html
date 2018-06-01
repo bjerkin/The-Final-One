@@ -1,0 +1,21 @@
+
+<form  class="form-inline my-2 my-lg-0" >
+  <input #query
+  (keyup)="search(query.value)"
+   class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+<p>   </p>
+<div class="card-columns row">
+  <product-card class="col-md-6 col-lg-4 col-xl-4" *ngFor="let product of filteredProducts  | paginate: { itemsPerPage: 3, currentPage: p };
+     trackBy trackByFn " [product]="product">
+  </product-card>
+
+
+
+<div class="page">
+  <pagination-controls *ngIf="leng > max" (pageChange)="p = $event"></pagination-controls>
+</div>
+</div>
+
+

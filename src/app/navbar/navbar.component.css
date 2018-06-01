@@ -1,0 +1,16 @@
+.nav-link{
+    cursor: pointer;
+}
+.badge-warning {
+  color: #212529;
+  background-color: lightgreen;
+}
+.navbar{
+  background-color: lightgreen;
+}
+.badge{
+  color: white;
+  background-color: black;
+  font-size: 14px
+;
+}

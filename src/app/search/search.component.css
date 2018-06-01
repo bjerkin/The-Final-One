@@ -1,0 +1,7 @@
+/* .card-columns row {
+    margin-inline-start: 50px;
+} */
+.page{
+  position: fixed;
+  bottom: 50px;
+}
